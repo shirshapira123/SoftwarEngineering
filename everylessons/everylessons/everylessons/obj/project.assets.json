@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\שיר\\source\\repos\\everylessons\\everylessons\\everylessons.csproj",
+      "projectUniqueName": "C:\\Users\\שיר\\SoftwarEngineering\\everylessons\\everylessons\\everylessons\\everylessons.csproj",
       "projectName": "everylessons",
-      "projectPath": "C:\\Users\\שיר\\source\\repos\\everylessons\\everylessons\\everylessons.csproj",
+      "projectPath": "C:\\Users\\שיר\\SoftwarEngineering\\everylessons\\everylessons\\everylessons\\everylessons.csproj",
       "packagesPath": "C:\\Users\\שיר\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\שיר\\source\\repos\\everylessons\\everylessons\\obj\\",
+      "outputPath": "C:\\Users\\שיר\\SoftwarEngineering\\everylessons\\everylessons\\everylessons\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

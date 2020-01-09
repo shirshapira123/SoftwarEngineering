@@ -1,4 +1,4 @@
-﻿_using System;
+﻿using System;
 
 namespace everylessons
 {
@@ -6,7 +6,7 @@ namespace everylessons
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("gittt mother fucker");
         }
     }
 }
