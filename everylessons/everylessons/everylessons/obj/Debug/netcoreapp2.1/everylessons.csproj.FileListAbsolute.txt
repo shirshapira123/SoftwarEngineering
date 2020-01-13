@@ -1,0 +1,11 @@
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\bin\Debug\netcoreapp2.1\everylessons.deps.json
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\bin\Debug\netcoreapp2.1\everylessons.runtimeconfig.json
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\bin\Debug\netcoreapp2.1\everylessons.runtimeconfig.dev.json
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\bin\Debug\netcoreapp2.1\everylessons.dll
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\bin\Debug\netcoreapp2.1\everylessons.pdb
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.csprojAssemblyReference.cache
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.csproj.CoreCompileInputs.cache
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.AssemblyInfoInputs.cache
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.AssemblyInfo.cs
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.dll
+C:\Users\שיר\SoftwarEngineering\everylessons\everylessons\everylessons\obj\Debug\netcoreapp2.1\everylessons.pdb
