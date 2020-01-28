@@ -4,27 +4,34 @@ namespace everylessons
 {
     class Program
     {
-
-        static void Main(string[] args)
+        public static int DividedByThree(int num)
         {
-            int[] flowers = new int[10];
-            for (int i = 0; i < flowers.Length; i++)
-                flowers[i] = int.Parse(Console.ReadLine());
-            int[] flowers2 = new int[10];
-            for (int i = 0; i < 10; i++)
+            int sum = 0;
+            for (int i = 1; i <= num; i++)
             {
-                if (flowers[i] / 100 == 2)
+                if (i % 3 == 0)
                 {
-                    flowers2[i] = flowers[i];
-                    flowers[i] = 0;
+                    sum += i;
                 }
             }
-            Console.WriteLine(flowers);
-
+            return sum;
+        }
+        static void Main(string[] args)
+        {
+            int[] change = new int[4];
+            for (int i = 0; i < change.Length; i++)
+            {
+                change[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = 0; i < change.Length; i++)
+            {
+                change [i] = DividedByThree(change[i]);
+            }
+            for (int i = 0; i < change.Length; i++)
+                Console.WriteLine(change[i]);
             Console.ReadKey();
         }
     }
 }
 
-                //Array.Copy(flowers,);
                 //זכויות יוצרים למגניבים המדליקים
