@@ -16,6 +16,23 @@ namespace everylessons
             }
             return sum;
         }
+        public static void Sort(int [] change)
+        {
+            int num = 0;
+            for (int i=0; i < change.Length; i++)
+            {
+                for (int k = 0; k < change.Length; k++)
+                {
+                    if (change[i] < change[k])
+                    {
+                        num = change[i];
+                        change[i] = change[k];
+                        change[k] = num;
+                    }
+                }
+
+            }
+        }
         static void Main(string[] args)
         {
             int[] change = new int[4];
@@ -27,6 +44,7 @@ namespace everylessons
             {
                 change [i] = DividedByThree(change[i]);
             }
+            Sort(change);
             for (int i = 0; i < change.Length; i++)
                 Console.WriteLine(change[i]);
             Console.ReadKey();
