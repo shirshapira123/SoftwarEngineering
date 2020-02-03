@@ -3,50 +3,22 @@
 namespace everylessons
 {
     class Program
-    {
-        public static int DividedByThree(int num)
-        {
-            int sum = 0;
-            for (int i = 1; i <= num; i++)
-            {
-                if (i % 3 == 0)
-                {
-                    sum += i;
-                }
-            }
-            return sum;
-        }
-        public static void Sort(int [] change)
-        {
-            int num = 0;
-            for (int i=0; i < change.Length; i++)
-            {
-                for (int k = 0; k < change.Length; k++)
-                {
-                    if (change[i] < change[k])
-                    {
-                        num = change[i];
-                        change[i] = change[k];
-                        change[k] = num;
-                    }
-                }
-
-            }
-        }
+    { 
         static void Main(string[] args)
         {
-            int[] change = new int[4];
-            for (int i = 0; i < change.Length; i++)
+            Random random = new Random();
+            int[] numbers = new int[57];
+            for (int i = 0; i<57; i++)
             {
-                change[i] = int.Parse(Console.ReadLine());
+                numbers[i] = random.Next(100, 1000);
             }
-            for (int i = 0; i < change.Length; i++)
+            for(int i = 0; i < 57; i++)
             {
-                change [i] = DividedByThree(change[i]);
+                if ((numbers[i]/100) / (numbers[i]%3) == 2)
+                {
+                    Console.WriteLine(numbers[i]);
+                }
             }
-            Sort(change);
-            for (int i = 0; i < change.Length; i++)
-                Console.WriteLine(change[i]);
             Console.ReadKey();
         }
     }
