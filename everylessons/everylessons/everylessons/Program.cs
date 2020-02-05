@@ -3,62 +3,40 @@
 namespace everylessons
 {
     class Program
-    { 
-        private static void Arr(int[] grades, int[] sort)
+    {
+        private static void Check(int [] choise)
         {
-            for(int i=0; i<grades.Length; i++)
+            int max = 0;
+            int worker = 0;
+            for (int i = 0; i < choise.Length; i++)
             {
-                for (int k = 0; k < sort.Length; k++)
+                if (max < choise[i])
                 {
-                    if (grades[i] == k)
-                    {
-                        sort[k]++;
-                    }
+                    max = choise[i];
+                    worker = i;
                 }
             }
-            
-        }
-        private static void Avg(int[] sort)
-        {
-            int sum = 0;
-            int max_range = 0;
-            int max_range_start = 0;
-            for (int k = 0; k < 10; k++)
-            {
-                int range_start = k * 10;
-                for (int i = 0; i < 10; i++) 
-                {
-                    sum += sort[range_start + i];
-                }
-                if (sum > max_range)
-                {
-                    max_range = sum;
-                    max_range_start = range_start;
-                }
-                sum = 0;
-
-            }
-            Console.WriteLine(max_range+", "+max_range_start+"-"+(max_range_start+9));
-        }
-        private static void Print(int [] grades)
-        {
-            for (int i = 100; i >= 0; i--)
-            {
-                Console.WriteLine(grades[i] + " get " + i);
-            }
+            Console.WriteLine("worker number "+worker+" got "+max+" votes.");
         }
         static void Main(string[] args)
         {
-            int[] grades = new int[5];
-            for (int i = 0; i < grades.Length; i++)
-                grades[i] = int.Parse(Console.ReadLine());
-            int[] sort = new int[101];
-            Arr(grades, sort);
-            Print(sort);
-            Avg(sort);
+            Console.Write("how many people are candidates? ");
+            int cand = int.Parse(Console.ReadLine());
+            int[] choise = new int[cand];
+            int workerNum = 0;
+            while (workerNum != -999)
+            {
+                Console.Write("what is your worker number? ");
+                workerNum = int.Parse(Console.ReadLine());
+                for (int i = 0; i < cand; i++)
+                {
+                    Console.Write(i +", one for good zero for bad: ");
+                    choise[i] += int.Parse(Console.ReadLine());
+                }
+            }
+            Check(choise);
             Console.ReadKey();
         }
     }
 }
-
-                //זכויות יוצרים למגניבים המדליקים
+//זכויות יוצרים למגניבים המדליקים
