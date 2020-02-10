@@ -4,37 +4,49 @@ namespace everylessons
 {
     class Program
     {
-        private static void Check(int [] choise)
-        {
-            int max = 0;
-            int worker = 0;
-            for (int i = 0; i < choise.Length; i++)
-            {
-                if (max < choise[i])
-                {
-                    max = choise[i];
-                    worker = i;
-                }
-            }
-            Console.WriteLine("worker number "+worker+" got "+max+" votes.");
-        }
         static void Main(string[] args)
         {
-            Console.Write("how many people are candidates? ");
-            int cand = int.Parse(Console.ReadLine());
-            int[] choise = new int[cand];
-            int workerNum = 0;
-            while (workerNum != -999)
+            Console.Write("how many chars? ");
+            int vsLength = int.Parse(Console.ReadLine());
+            char[] vs = new char[vsLength];
+            for (int i = 0; i < vs.Length; i++)
             {
-                Console.Write("what is your worker number? ");
-                workerNum = int.Parse(Console.ReadLine());
-                for (int i = 0; i < cand; i++)
+                char charim = char.Parse(Console.ReadLine());
+                vs[i] = charim;
+            }
+            int[] amount = new int[26];
+            for (int i = 0; i < vsLength; i++)
+            {
+                if ((int)vs[i] >= 97 && (int)vs[i] <= 123)
+                    amount[(int)vs[i] - 97]++;
+                else if ((int)vs[i] >= 65 && (int)vs[i] <= 91)
+                    amount[(int)vs[i] - 65]++;
+            }
+            int lastCounter = amount[0];
+            int check = 0;
+            for (int i = 0; i < amount.Length; i++)
+            {
+                if (amount[i] == lastCounter)
                 {
-                    Console.Write(i +", one for good zero for bad: ");
-                    choise[i] += int.Parse(Console.ReadLine());
+                    check++;
                 }
             }
-            Check(choise);
+            if (check == vsLength)
+                Console.WriteLine("there is izogram.");
+            else
+                Console.WriteLine("there is no izogram.");
+            check = 0;
+            for (int i = 0; i < amount.Length; i++)
+            {
+                if (amount[i] == 0)
+                {
+                    check++;
+                }
+            }
+            if (check == 0)
+                Console.WriteLine("There is penegram");
+            else
+                Console.WriteLine("There is no penegram");
             Console.ReadKey();
         }
     }
