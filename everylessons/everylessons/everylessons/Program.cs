@@ -4,45 +4,56 @@ namespace everylessons
 {
     class Program
     {
-        public static bool BinarySearch(int[] arr, int num)
+        public static void Merge(int[] firstArr, int [] secondArr)
         {
-            int half = arr.Length;
-            int low1 = 0, high1 = half / 2 - 1, low2 = high1, high2=arr.Length-1, middle1 = -1, middle2 = -1;
-            while (low1 <= high1)
+            int p1 = 0, p2 = 0, p3 = 0;
+            int[] mergeArr = new int[firstArr.Length + secondArr.Length];
+            while (p1 < firstArr.Length && p2 < secondArr.Length)
             {
-                middle1 = (low1 + high1) / 2;
-                if (num == arr[middle1])
-                    low1 = high1 + 1;
-                else if (num < arr[middle1])
-                    high1 = middle1 - 1;
+                if (firstArr[p1] < secondArr[p2])
+                {
+                    mergeArr[p3] = firstArr[p1];
+                    p1++;
+                }
+                else if (secondArr[p2] < firstArr[p1])
+                {
+                    mergeArr[p3] = secondArr[p2];
+                    p2++;
+                }
                 else
-                    low1 = middle1 + 1;
+                {
+                    mergeArr[p3] = firstArr[p1];
+                    p3++;
+                    mergeArr[p3] = secondArr[p2];
+                    p2++;
+                    p1++;
+                }
+                p3++;
             }
-            while (low2 <= high2)
+            while (p1 < firstArr.Length) 
             {
-                middle2 = (low2 + high2) / 2;
-                if (num == arr[middle2])
-                    low2 = high2 + 1;
-                else if (num < arr[middle2])
-                    high2 = middle2 - 1;
-                else
-                    low2 = middle2 + 1;
+                mergeArr[p3] = firstArr[p1];
+                p1++;
+                p3++;
             }
-            if (middle1 != 14 && middle2 != 14)
-                return true;
-            return false;
-            
-            
+            while (p2 < secondArr.Length) 
+            {
+                mergeArr[p3] = secondArr[p2];
+                p2++;
+                p3++;
+            }
+            for (int i = 0; i < mergeArr.Length; i++)
+            {
+                Console.Write(mergeArr[i] + ", ");
+            }
         }
         static void Main(string[] args)
         {
-            while (true)
-            {
-                int[] vs = new int[15] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 5, 4, 3, 2, 1 };
-                int num = int.Parse(Console.ReadLine());
-                Console.WriteLine(BinarySearch(vs, num));
-            }
-            //Console.ReadKey();
+            int[] arr1 = new int[6] { 3, 6, 7, 9, 12, 56 };
+            int[] arr2 = new int[7] { 6, 8, 20, 50, 98, 121, 256 };
+            Merge(arr1, arr2);
+            
+            Console.ReadKey();
         }
     }
 }
