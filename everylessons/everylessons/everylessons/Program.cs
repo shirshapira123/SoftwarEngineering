@@ -4,52 +4,19 @@ namespace everylessons
 {
     class Program
     {
-        public static void Merge(int[] firstArr, int [] secondArr)
+        public static int Fact(int num)
         {
-            int p1 = 0, p2 = 0, p3 = 0;
-            int[] mergeArr = new int[firstArr.Length + secondArr.Length];
-            while (p1 < firstArr.Length && p2 < secondArr.Length)
+            int factorial = 1;
+            for (int i = num; i > 0; i--)
             {
-                if (firstArr[p1] < secondArr[p2])
-                {
-                    mergeArr[p3] = firstArr[p1];
-                    p1++;
-                }
-                else if (secondArr[p2] < firstArr[p1])
-                {
-                    mergeArr[p3] = secondArr[p2];
-                    p2++;
-                }
-                else
-                {
-                    mergeArr[p3] = firstArr[p1];
-                    p2++;
-                    p1++;
-                }
-                p3++;
+                factorial *= i;
             }
-            while (p1 < firstArr.Length) 
-            {
-                mergeArr[p3] = firstArr[p1];
-                p1++;
-                p3++;
-            }
-            while (p2 < secondArr.Length) 
-            {
-                mergeArr[p3] = secondArr[p2];
-                p2++;
-                p3++;
-            }
-            for (int i = 0; i < mergeArr.Length; i++)
-            {
-                Console.Write(mergeArr[i] + ", ");
-            }
+            return factorial;
         }
         static void Main(string[] args)
         {
-            int[] arr1 = new int[6] { 3, 6, 7, 9, 12, 56 };
-            int[] arr2 = new int[7] { 6, 8, 20, 50, 98, 121, 256 };
-            Merge(arr1, arr2);
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine(Fact(num));
             Console.ReadKey();
         }
     }
