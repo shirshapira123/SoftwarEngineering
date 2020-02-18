@@ -23,8 +23,6 @@ namespace everylessons
                 else
                 {
                     mergeArr[p3] = firstArr[p1];
-                    p3++;
-                    mergeArr[p3] = secondArr[p2];
                     p2++;
                     p1++;
                 }
@@ -52,7 +50,6 @@ namespace everylessons
             int[] arr1 = new int[6] { 3, 6, 7, 9, 12, 56 };
             int[] arr2 = new int[7] { 6, 8, 20, 50, 98, 121, 256 };
             Merge(arr1, arr2);
-            
             Console.ReadKey();
         }
     }
