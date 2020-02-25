@@ -4,31 +4,51 @@ namespace everylessons
 {
     class Program
     {
-        public static void Sort(int[] grades)
+        static void Main(string[] args)
         {
-            int t;
-            for (int i = 0; i < grades.Length; i++)
-            {
-                for (int k = i+1; k < grades.Length; k++)
+            while (true)
+            { 
+                Console.WriteLine("Enter the board size: ");
+                int size = int.Parse(Console.ReadLine());
+                int[,] board = new int[size + 1, size + 1];
+                for (int i = 1; i < board.GetLength(1); i++)
                 {
-                    if (grades[i] > grades[k])
+                    for (int k = 1; k < board.GetLength(0); k++)
                     {
-                        t = grades[i];
-                        grades[i] = grades[k];
-                        grades[k] = t;
+                        board[i, k] = i * k;
                     }
+                }
+
+                for (int i = 1; i < board.GetLength(1); i++)
+                {
+                    for (int k = 1; k < board.GetLength(0); k++)
+                    {
+                        if (board[i, k] % size == 0 && (i != size && k != size))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            if (board[i, k] < 10)
+                                Console.Write(board[i, k] + "   ");
+                            else if (board[i, k] < 100)
+                                Console.Write(board[i, k] + "  ");
+                            else
+                                Console.Write(board[i, k] + " ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else
+                        {
+                            if (board[i, k] < 10)
+                                Console.Write(board[i, k] + "   ");
+                            else if (board[i, k] < 100)
+                                Console.Write(board[i, k] + "  ");
+                            else
+                                Console.Write(board[i, k] + " ");
+                        }
+
+                    }
+                    Console.WriteLine();
                 }
             }
         }
-        static void Main(string[] args)
-        {
-            int[] grades = new int[200];
-            Random rnd = new Random();
-            for (int i = 0; i < grades.Length; i++)
-                grades[i] = rnd.Next(0,100);
-            Sort(grades);
-
-        }
     }
 }
-//זכויות יוצרים למגניבים המדליקים
+//זכויות יוצרים למגניבים המדליקים   
