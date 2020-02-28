@@ -4,50 +4,169 @@ namespace everylessons
 {
     class Program
     {
-        static void Main(string[] args)
+        static void B(int[,] num)
         {
-            while (true)
-            { 
-                Console.WriteLine("Enter the board size: ");
-                int size = int.Parse(Console.ReadLine());
-                int[,] board = new int[size + 1, size + 1];
-                for (int i = 1; i < board.GetLength(1); i++)
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
                 {
-                    for (int k = 1; k < board.GetLength(0); k++)
-                    {
-                        board[i, k] = i * k;
-                    }
+                    Console.Write(num[i, k] + " ");
                 }
-
-                for (int i = 1; i < board.GetLength(1); i++)
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < num.GetLength(1); i++)
+            {
+                for (int k = 0; k < num.GetLength(0); k++)
                 {
-                    for (int k = 1; k < board.GetLength(0); k++)
+                    sum += num[k, i];
+                }
+                Console.WriteLine("line "+(i+1)+": "+sum);
+                sum = 0;
+            }
+        }
+        static void C(int[,] num)
+        {
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
+                {
+                    if (k == 0 || i == 0 || i == num.GetLength(0)-1 || k == num.GetLength(1)-1)
                     {
-                        if (board[i, k] % size == 0 && (i != size && k != size))
-                        {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            if (board[i, k] < 10)
-                                Console.Write(board[i, k] + "   ");
-                            else if (board[i, k] < 100)
-                                Console.Write(board[i, k] + "  ");
-                            else
-                                Console.Write(board[i, k] + " ");
-                            Console.ForegroundColor = ConsoleColor.White;
-                        }
-                        else
-                        {
-                            if (board[i, k] < 10)
-                                Console.Write(board[i, k] + "   ");
-                            else if (board[i, k] < 100)
-                                Console.Write(board[i, k] + "  ");
-                            else
-                                Console.Write(board[i, k] + " ");
-                        }
-
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(num[i, k] + " ");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
-                    Console.WriteLine();
+                    else
+                        Console.Write(num[i, k] + " ");
+
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < num.GetLength(1); i++)
+            {
+                for (int k = 0; k < num.GetLength(0); k++)
+                {
+                    if (k == 0 || i == 0 || i == num.GetLength(0)-1 || k == num.GetLength(1)-1)
+                    {
+                        sum += num[k, i];
+                    }
                 }
             }
+            Console.WriteLine(sum);
+        }
+        static void D(int[,] num)
+        {
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
+                {
+                    if (k == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(num[i, k] + " ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                        Console.Write(num[i, k] + " ");
+
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < num.GetLength(1); i++)
+            {
+                for (int k = 0; k < num.GetLength(0); k++)
+                {
+                    if (k == i)
+                    {
+                        sum += num[k, i];
+                    }
+                }
+            }
+            Console.WriteLine(sum);
+        }
+        static void E(int[,] num)
+        {
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
+                {
+                    if (i < k)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(num[i, k] + " ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                        Console.Write(num[i, k] + " ");
+
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < num.GetLength(1); i++)
+            {
+                for (int k = 0; k < num.GetLength(0); k++)
+                {
+                    if (i < k)
+                    {
+                        sum += num[k, i];
+                    }
+                }
+            }
+            Console.WriteLine(sum);
+        }
+        static void F(int[,] num)
+        {
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
+                {
+                    if (i > k)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(num[i, k] + " ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                        Console.Write(num[i, k] + " ");
+
+                }
+                Console.WriteLine();
+            }
+            int sum = 0;
+            for (int i = 0; i < num.GetLength(1); i++)
+            {
+                for (int k = 0; k < num.GetLength(0); k++)
+                {
+                    if (i > k)
+                    {
+                        sum += num[k, i];
+                    }
+                }
+            }
+            Console.WriteLine(sum);
+        }
+
+        static void Main(string[] args)
+        {
+            Random rnd = new Random();
+            int[,] num = new int[5, 5];
+            for (int i = 0; i < num.GetLength(0); i++)
+            {
+                for (int k = 0; k < num.GetLength(1); k++)
+                {
+                    num[i, k] = rnd.Next(1, 10);
+                }
+            }
+            B(num);
+            C(num);
+            D(num);
+            E(num);
+            F(num);
+            Console.ReadKey();
         }
     }
 }
