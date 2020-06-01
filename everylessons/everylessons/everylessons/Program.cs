@@ -4,108 +4,35 @@ namespace everylessons
 {
     class Program
     {
-        public static void isometric(char[] arr, int length)
+        public static string Cipher(string str, int num)
         {
-            int[] arrey = new int[26];
-            int last = 0;
-
-            for (int i = 0; i < length; i++)
+            int Letter;
+            string cipher="";
+            for (int i = 0; i < str.Length; i++)
             {
-                int chr = (int)arr[i];
-
-                if (chr >= 97 && chr <= 123)
+                Letter = (int)str[i];
+                if (Letter >= 97 || Letter <= 122)
                 {
-                    arrey[chr - 97]++;
-                    last = arrey[chr - 97];
+                    Letter = (Letter * num) % 26 +97;
+                    cipher += ((char)Letter).ToString();
                 }
-                else if (chr >= 65 && chr <= 91)
-                {
-                    arrey[chr - 65]++;
-                    last = arrey[chr - 65];
+                else if (Letter >= 65 || Letter <= 90)
+                { 
+                    Letter = (Letter * num) % 26 + 65;
+                    cipher += ((char)Letter).ToString();
                 }
             }
-
-            bool isOK = true;
-
-            for (int i = 0; i < arrey.Length; i++)
-            {
-                if (arrey[i] > 0 && arrey[i] != last)
-                {
-                    isOK = false;
-                    break;
-                }
-            }
-
-            if (isOK)
-                Console.WriteLine("Isogram");
-            else
-                Console.WriteLine("Not Isogram");
-        }
-        public static char[] Kelet()
-        {
-            Console.WriteLine("Input the word's length");
-            int length = int.Parse(Console.ReadLine());
-            char[] arr = new char[length];
-            Console.WriteLine("Enter word letter by letter");
-            for (int b = 0; b < length; b++)
-            {
-                char a = Char.Parse(Console.ReadLine());
-                arr[b] = a;
-            }
-            return arr;
-        }
-        public static void ispanagram(char[] arr, int length)          {
-            int[] arrey = new int[26];
-            int last = 0;
-
-            for (int i = 0; i < length; i++)
-            {
-                int chr = (int)arr[i];
-
-                if (chr >= 97 && chr <= 123)
-                {
-                    arrey[chr - 97]++;
-                    last = arrey[chr - 97];
-                }
-                else if (chr >= 65 && chr <= 91)
-                {
-                    arrey[chr - 65]++;
-                    last = arrey[chr - 65];
-                }
-            }
-
-            bool isOK = true;
-            for (int i = 0; i < arrey.Length; i++)
-            {
-                if (arrey[i] == 0 || arrey[i] != last)
-                {
-                    isOK = false;
-                    break;
-                }
-            }
-            bool isPan = true;
-
-            for (int i = 0; i < arrey.Length; i++)
-            {
-                if (arrey[i] == 0)
-                {
-                    isPan = false;
-                    break;
-                }
-            }
-            if (isPan)
-                Console.WriteLine("A panagram");
-            if (isOK && last == 1)
-                Console.WriteLine("This is a perfect Panagram");
-            if (!isPan)
-                Console.WriteLine("Not a Panagram");
+            return cipher;
         }
         static void Main(string[] args)
         {
-            char[] arr = Kelet();
-            isometric(arr, arr.Length);
-            ispanagram(arr, arr.Length);
-            Console.ReadKey();
+            while (true)
+            {
+                string str = Console.ReadLine();
+                int num = int.Parse(Console.ReadLine());
+                Console.WriteLine(Cipher(str, num));
+                Console.ReadKey();
+            }
         }
     }
 }
