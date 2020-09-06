@@ -4,35 +4,21 @@ namespace everylessons
 {
     class Program
     {
-        public static string Cipher(string str, int num)
-        {
-            int Letter;
-            string cipher="";
-            for (int i = 0; i < str.Length; i++)
-            {
-                Letter = (int)str[i];
-                if (Letter >= 97 || Letter <= 122)
-                {
-                    Letter = (Letter * num) % 26 +97;
-                    cipher += ((char)Letter).ToString();
-                }
-                else if (Letter >= 65 || Letter <= 90)
-                { 
-                    Letter = (Letter * num) % 26 + 65;
-                    cipher += ((char)Letter).ToString();
-                }
-            }
-            return cipher;
-        }
         static void Main(string[] args)
         {
-            while (true)
-            {
-                string str = Console.ReadLine();
-                int num = int.Parse(Console.ReadLine());
-                Console.WriteLine(Cipher(str, num));
-                Console.ReadKey();
-            }
+            Point point1 = new Point(43, 7);
+            Point point2 = new Point(5, 5);
+            Console.WriteLine("point 1: " + point1.ToString());
+            Console.WriteLine("point 2: " + point2.ToString());
+            Console.WriteLine("distance: " + point1.Distance(point2));
+            double num = point1.GetX();
+            point1.SetX(point2.GetX());
+            point2.SetX(num);
+            Console.WriteLine("point 1:" + point1.ToString());
+            Console.WriteLine("point 2:" + point2.ToString());
+            Point middle = point1.Middle(point2);
+            Console.WriteLine("middle point: " + middle.ToString());
+            Console.ReadKey();
         }
     }
 }
