@@ -4,97 +4,129 @@ namespace everylessons
 {
     class Program
     {
-        public static void ShowParents(Class group)
+        public static int DigitSum(int a)
         {
-            for (int i = 0; i < group.GetMaxAmountStudent(); i++)
-            {
-                Console.WriteLine(group.GetStudents()[i].GetParent());
-            }
+            int sum = 0;
+            if (a < 10)
+                return a;
+            sum = DigitSum(a / 10);
+            return a % 10 + sum;
         }
-        public static bool UpdateParentPhone(Class group, string name, string phone)
+        public static int Length(int a)
         {
-            for (int i = 0; i < group.GetMaxAmountStudent(); i++)
-            {
-                if (name.Equals(group.GetStudents()[i].GetName()))
-                {
-                    group.GetStudents()[i].GetParent().SetPhone(phone);
-                    return true;
-                }
-            }
-            return false;
+            int len = 0;
+            if (a < 10)
+                return 1;
+            len = Length(a / 10);
+            return len + 1;
         }
-        public static bool AreThereTwins(Class group)
+        public static bool Search(int num, int a)
         {
-            for (int i = 0; i < group.GetMaxAmountStudent(); i++)
+            bool check = false;
+            if (num < 10 && num != a)
+                return false;
+            if (num % 10 == a)
+                return true;
+            check = Search(num / 10, a);
+            return check;
+        }
+        public static int BigestNum(int num)
+        {
+            int max = num % 10;
+            if (num < 10)
+                return max;
+            max = Math.Max(max, BigestNum(num / 10));
+            return max;
+        }
+        public static int SumNum(int num, int a)
+        {
+            int sumnum = 0;
+            if (num < 10)
             {
-                for (int k = 0; k < group.GetMaxAmountStudent(); k++)
-                {
-                    if (group.GetStudents()[i].GetParent().Equals(group.GetStudents()[k].GetParent()))
-                        return true;
-                }
+                if (num == a)
+                    return 1;
+                return 0;
             }
-            return false;
+            if (num % 10 == a)
+                sumnum ++;
+            sumnum += SumNum(num / 10, a);
+            return sumnum;
+
+        }
+        public static int Atseret(int a)
+        {
+            int number = 1;
+            if (a == 0)
+                return 1;
+            number = Atseret(a - 1);
+            return a * number;
+
+        }
+        public static int Times(int num1, int num2)
+        {
+            int times = 0;
+            if (num2 > num1)
+                return 0;
+            num1 -= num2;
+            times++;
+            times += Times(num1, num2);
+            return times;
+        }
+        public static int Rest(int num1, int num2)
+        {
+            int rest = 0;
+            if (num1 - num2 < num2)
+                rest = num1 - num2;
+            else
+                rest = Rest(num1 - num2, num2);
+            return rest;
+        }
+        public static int Pow(int a, int b)
+        {
+            int number = 1;
+            if (b == 0)
+                return 1;
+            number = Pow(a, b - 1);
+            return a * number;
         }
         static void Main(string[] args)
         {
-            Class c1 = new Class("iud alef4", 4);
-            for (int i = 0; i < 5; i++)
-            {
-                Console.Write("Parent name: ");
-                string p_name = Console.ReadLine();
-                Console.Write("Parent phone number: ");
-                string phone = Console.ReadLine();
-                Parent parent = new Parent(p_name, phone);
-                Console.Write("Student name: ");
-                string s_name = Console.ReadLine();
-                Console.Write("Student gender: ");
-                string gender = Console.ReadLine();
-                Console.Write("Student age: ");
-                int age = int.Parse(Console.ReadLine());
-                Student student = new Student(s_name, gender, age, parent);
-                bool add = c1.AddStudent(student);
-                if (add)
-                    Console.WriteLine("Successfuly add!\n-------------------------");
-                else
-                    Console.WriteLine("The list is full\n-------------------------");
-            }
-            Console.WriteLine(c1);
-            for (int i = 0; i < 2; i++)
-            {
-                Console.Write("search student by name: ");
-                string search_name = Console.ReadLine();
-                Student search_student = c1.SearchStudent(search_name);
-                if (search_student == null)
-                    Console.WriteLine("the student you are looking for isn't exist");
-                else
-                    Console.WriteLine($"the student you are looking for is: {search_student}");
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                Console.Write("delete student by name: ");
-                string delete_name = Console.ReadLine();
-                Student delete_student = c1.SearchStudent(delete_name);
-                if (delete_student == null)
-                    Console.WriteLine("the student you are looking for isn't exist");
-                else
-                    Console.WriteLine($"the student you just deleted is: {delete_student}");
-                Console.WriteLine(c1);
-            }
-            ShowParents(c1);
-            Console.Write("enter the name of the student(to update his parent's phone number): ");
-            string name = Console.ReadLine();
-            Console.Write("enter the updated phone number: ");
-            string updated_phone = Console.ReadLine();
-            bool update_success = UpdateParentPhone(c1, name, updated_phone);
-            if (update_success)
-                Console.WriteLine("The update was successful");
-            else
-                Console.WriteLine("can't update. the name is not exist");
-            bool are_they_twins = AreThereTwins(c1);
-            if (are_they_twins)
-                Console.WriteLine("There are twins in the class");
-            else
-                Console.WriteLine("You don't have twins in the class");
+            //Console.WriteLine(DigitSum(123));
+            //Console.WriteLine(DigitSum(124));
+            //Console.WriteLine(DigitSum(153));
+
+            //Console.WriteLine(Length(3456789));
+            //Console.WriteLine(Length(345678));
+            //Console.WriteLine(Length(34569));
+
+            //Console.WriteLine(Search(12345, 4));
+            //Console.WriteLine(Search(12345, 6));
+            //Console.WriteLine(Search(10345, 1));
+
+            //Console.WriteLine(BigestNum(987654321));
+            //Console.WriteLine(BigestNum(654321));
+            //Console.WriteLine(BigestNum(21));
+
+            //Console.WriteLine(SumNum(123123121, 1));
+            //Console.WriteLine(SumNum(123123121, 2));
+            //Console.WriteLine(SumNum(123123121, 3));
+
+            //Console.WriteLine(Atseret(5));
+            //Console.WriteLine(Atseret(3));
+            //Console.WriteLine(Atseret(0));
+
+            //Console.WriteLine(Times(10,2));
+            //Console.WriteLine(Times(10,4));
+            //Console.WriteLine(Times(13,3));
+
+            //Console.WriteLine(Rest(13,2));
+            //Console.WriteLine(Rest(14,2));
+            //Console.WriteLine(Rest(14,8));
+
+
+            //Console.WriteLine(Pow(5,3));
+            //Console.WriteLine(Pow(2,4));
+            //Console.WriteLine(Pow(3,0));
             Console.ReadKey();
         }
     }
