@@ -4,129 +4,280 @@ namespace everylessons
 {
     class Program
     {
-        public static int DigitSum(int a)
+        //1
+        public static void InputArray(int[] arr)
         {
-            int sum = 0;
-            if (a < 10)
-                return a;
-            sum = DigitSum(a / 10);
-            return a % 10 + sum;
+            InputArray(arr, 0);
         }
-        public static int Length(int a)
+        private static void InputArray(int[] arr, int index)
         {
-            int len = 0;
-            if (a < 10)
-                return 1;
-            len = Length(a / 10);
-            return len + 1;
-        }
-        public static bool Search(int num, int a)
-        {
-            bool check = false;
-            if (num < 10 && num != a)
-                return false;
-            if (num % 10 == a)
-                return true;
-            check = Search(num / 10, a);
-            return check;
-        }
-        public static int BigestNum(int num)
-        {
-            int max = num % 10;
-            if (num < 10)
-                return max;
-            max = Math.Max(max, BigestNum(num / 10));
-            return max;
-        }
-        public static int SumNum(int num, int a)
-        {
-            int sumnum = 0;
-            if (num < 10)
+            if (index < arr.Length)
             {
-                if (num == a)
-                    return 1;
-                return 0;
+                arr[index] = int.Parse(Console.ReadLine());
+                InputArray(arr, index + 1);
             }
-            if (num % 10 == a)
-                sumnum ++;
-            sumnum += SumNum(num / 10, a);
-            return sumnum;
+        }
 
-        }
-        public static int Atseret(int a)
-        {
-            int number = 1;
-            if (a == 0)
-                return 1;
-            number = Atseret(a - 1);
-            return a * number;
 
-        }
-        public static int Times(int num1, int num2)
+        //2
+        public static void OutputArrayLeftToRight(int[] arr)
         {
-            int times = 0;
-            if (num2 > num1)
-                return 0;
-            num1 -= num2;
-            times++;
-            times += Times(num1, num2);
-            return times;
+            OutputArrayLeftToRight(arr, 0);
         }
-        public static int Rest(int num1, int num2)
+        private static void OutputArrayLeftToRight(int[] arr, int index)
         {
-            int rest = 0;
-            if (num1 - num2 < num2)
-                rest = num1 - num2;
+            if (index < arr.Length)
+            {
+                Console.WriteLine(arr[index]);
+                OutputArrayLeftToRight(arr, index + 1);
+            }
+        }
+
+
+        //3
+        public static void OutputArrayRightToLeft(int[] arr)
+        {
+            OutputArrayRightToLeft(arr, arr.Length-1);
+        }
+        private static void OutputArrayRightToLeft(int[] arr, int index)
+        {
+            if (index >= 0)
+            {
+                Console.WriteLine(arr[index]);
+                OutputArrayRightToLeft(arr, index - 1);
+            }
+        }
+
+
+        //4
+        public static bool IsFound(int[] arr, int number)
+        {
+            return IsFound(arr, number, 0);
+        }
+        private static bool IsFound(int[] arr, int number, int index)
+        {
+            if (arr.Length > index)
+            {
+                if (arr[index] == number)
+                {
+                    return true;
+                }
+                return IsFound(arr, number, index + 1);
+            }
+            return false;
+        }
+
+
+        //5
+        public static int CountExist(int[] arr, int number)
+        {
+            return CountExist(arr, number, 0);
+        }
+        private static int CountExist(int[] arr, int number, int index)
+        {
+            if(arr.Length > index)
+            {
+                if (number == arr[index])
+                {
+                    return CountExist(arr, number, index + 1) + 1;
+                }
+                return CountExist(arr, number, index + 1);
+            }
+            return 0;
+        }
+
+
+        //6
+        public static bool IsUpSeriesArray(int[] arr)
+        {
+            return IsUpSeriesArray(arr, 0);
+        }
+        private static bool IsUpSeriesArray(int[] arr, int index)
+        {
+            if (arr.Length > index + 1)
+            {
+                if (arr[index] <= arr[index + 1])
+                {
+                    return IsUpSeriesArray(arr, index + 1);
+                }
+                return false;
+            }
+            return true; 
+        }
+
+
+        //7
+        public static int SumArray(int[] arr)
+        {
+            return SumArray(arr, 0);
+        }
+        private static int SumArray(int[] arr, int index)
+        {
+            if (arr.Length > index)
+            {
+                return arr[index] + SumArray(arr, index + 1);
+            }
+            return 0;
+        }
+
+
+        //8
+        public static int MaxArray(int[] arr)
+        {
+            return MaxArray(arr, 0);
+        }
+        private static int MaxArray(int[] arr, int index)
+        {
+            if (arr.Length > index)
+            {
+                return Math.Max(arr[index], MaxArray(arr, index + 1));
+            }
+            return 0;
+        }
+
+
+        //9
+        public static void FillArray(int[] arr, int number)
+        {
+            FillArray(arr, number, 0);
+        }
+        private static void FillArray(int[] arr, int number, int index)
+        {
+            if (index < arr.Length)
+            {
+                arr[index] = number + index;
+                FillArray(arr, number, index + 1);
+            }
+        }
+
+
+        //10
+        public static void SeriesArray(int[] arr, int a1, int d)
+        {
+            SeriesArray(arr, a1, d, 0);
+        }
+        private static void SeriesArray(int[] arr, int a1, int d, int index)
+        {
+            if (index < arr.Length)
+            {
+                arr[index] = a1 + index*d;
+                SeriesArray(arr, a1, d, index + 1);
+            }
+        }
+
+
+        //11
+        public static void FibSeriesArray(int[] arr, int number1, int number2)
+        {
+            FibSeriesArray(arr, number1, number2, 2);
+        }
+        private static void FibSeriesArray(int[] arr, int number1, int number2, int index)
+        {
+            arr[0] = number1;
+            arr[1] = number2;
+            if (index < arr.Length)
+            {
+                arr[index] = arr[index - 1] + arr[index - 2];
+                FibSeriesArray(arr, number1, number2, index + 1);
+            }
+        }
+
+
+        //12
+        public static bool IsSeriesArray(int[] arr)
+        {
+            return IsSeriesArray(arr, 2);
+        }
+        private static bool IsSeriesArray(int[] arr, int index)
+        {
+            if (arr.Length > index)
+            {
+                if (arr[index] == arr[index - 1] + arr[index - 2])
+                {
+                    return IsSeriesArray(arr, index + 1);
+                }
+                return false;
+            }
+            return true;
+        }
+
+
+        //13
+        public static bool IsPolindromArray(int[] arr)
+        {
+            return IsPolindromArray(arr, 4, 9);
+        }
+        private static bool IsPolindromArray(int[] arr, int start, int last)
+        {
+            if ((last - start) % 2 == 0)
+                return false;
+
+            if (arr[start] == arr[last])
+            {
+                if (last - start != 1)
+                    return true;
+                return IsPolindromArray(arr, start + 1, last - 1);
+            }
+            return false;
+        }
+
+
+        //14
+        public static bool BinarySearchArray(int[] arr, int number)
+        {
+            return BinarySearchArray(arr, number, 3, 6);
+        }
+        private static bool BinarySearchArray(int[] arr, int number, int first, int last)
+        {
+            int middle = (first + last) / 2;
+            if (arr[middle] == number)
+                return true;
+            else if (first >= last)
+                return false;
+            else if (number < arr[middle])
+                return BinarySearchArray(arr, number, first, middle);
             else
-                rest = Rest(num1 - num2, num2);
-            return rest;
+                return BinarySearchArray(arr, number, middle, last);
         }
-        public static int Pow(int a, int b)
-        {
-            int number = 1;
-            if (b == 0)
-                return 1;
-            number = Pow(a, b - 1);
-            return a * number;
-        }
+
+
         static void Main(string[] args)
         {
-            //Console.WriteLine(DigitSum(123));
-            //Console.WriteLine(DigitSum(124));
-            //Console.WriteLine(DigitSum(153));
-
-            //Console.WriteLine(Length(3456789));
-            //Console.WriteLine(Length(345678));
-            //Console.WriteLine(Length(34569));
-
-            //Console.WriteLine(Search(12345, 4));
-            //Console.WriteLine(Search(12345, 6));
-            //Console.WriteLine(Search(10345, 1));
-
-            //Console.WriteLine(BigestNum(987654321));
-            //Console.WriteLine(BigestNum(654321));
-            //Console.WriteLine(BigestNum(21));
-
-            //Console.WriteLine(SumNum(123123121, 1));
-            //Console.WriteLine(SumNum(123123121, 2));
-            //Console.WriteLine(SumNum(123123121, 3));
-
-            //Console.WriteLine(Atseret(5));
-            //Console.WriteLine(Atseret(3));
-            //Console.WriteLine(Atseret(0));
-
-            //Console.WriteLine(Times(10,2));
-            //Console.WriteLine(Times(10,4));
-            //Console.WriteLine(Times(13,3));
-
-            //Console.WriteLine(Rest(13,2));
-            //Console.WriteLine(Rest(14,2));
-            //Console.WriteLine(Rest(14,8));
-
-
-            //Console.WriteLine(Pow(5,3));
-            //Console.WriteLine(Pow(2,4));
-            //Console.WriteLine(Pow(3,0));
+            int[] a = new int[10];
+            int[] b = new int[10] {1, 2, 3, 4, 1, 2, 3, 3, 2, 1};
+            InputArray(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            OutputArrayLeftToRight(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            OutputArrayRightToLeft(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(IsFound(a, 11));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(CountExist(a, 1));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(IsUpSeriesArray(a));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(SumArray(a));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(MaxArray(a));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            FillArray(a, 4);
+            OutputArrayLeftToRight(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            SeriesArray(a, 9, 3);
+            OutputArrayLeftToRight(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            FibSeriesArray(a, 1, 1);
+            OutputArrayLeftToRight(a);
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(IsSeriesArray(a));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(IsPolindromArray(a));
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(IsPolindromArray(b));
+            b = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            Console.WriteLine("\n\n\n-----------------------------------\n\n\n");
+            Console.WriteLine(BinarySearchArray(b, 2));
             Console.ReadKey();
         }
     }
