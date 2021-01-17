@@ -27,7 +27,14 @@ namespace everylessons
         {
             this.next = next;
         }
-        public T GetInfo() => this.info;
-        public Node<T> GetNext() => this.next;
+        public T GetInfo()
+        {
+            return this.info;
+        }
+
+        public Node<T> GetNext()
+        {
+            return this.next;
+        }
     }
 }
