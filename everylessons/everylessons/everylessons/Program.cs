@@ -55,6 +55,25 @@ namespace everylessons
             }
             return list;
         }
+        public static bool IsAppears(Node<int> list, int num)
+        {
+            Node<int> pos = list;
+            while (pos != null)
+            {
+                if (num == pos.GetInfo())
+                    return true;
+                pos = pos.GetNext();
+            }
+            return false;
+        }
+        public static Node<int> DeleteAll(Node<int> list, int num)
+        {
+            if (list == null)
+                return list;
+            while (IsAppears(list, num))
+                list = DeleteNumber(list, num);
+            return list;
+        }
         public static Node<int> AddNumberToSortedList(Node<int> list, int num)
         {
             if (list == null || num <= list.GetInfo())
@@ -94,7 +113,7 @@ namespace everylessons
             OutputList(list);
             Console.Write("Enter number: ");
             num = int.Parse(Console.ReadLine());
-            list = DeleteNumber(list, num);
+            list = DeleteAll(list, num);
             OutputList(list);
             Console.Write("Enter number: ");
             num = int.Parse(Console.ReadLine());
