@@ -92,38 +92,68 @@ namespace everylessons
             pos.SetNext(new Node<int>(num));
             return list;
         }
+        public static int GetLength(Node<int> list)
+        {
+
+            int counter = 0;
+            Node<int> pos = list;
+            while (pos != null)
+            {
+                counter++;
+                pos = pos.GetNext();
+            }
+            return counter;
+        }
         static void Main(string[] args)
         {
-            Node<int> list1 = BuildRegularList();
-            OutputList(list1);
-            Console.Write("Enter number: ");
-            int num = int.Parse(Console.ReadLine());
-            list1 = AddNumberToSortedList(list1, num);
-            OutputList(list1);
-            Console.Write("Enter number: ");
-            num = int.Parse(Console.ReadLine());
-            list1 = AddNumberToSortedList(list1, num);
-            OutputList(list1);
-            Console.Write("Enter number: ");
-            num = int.Parse(Console.ReadLine());
-            list1 = AddNumberToSortedList(list1, num);
-            OutputList(list1);
+            Console.Write("your name: ");
+            string name = Console.ReadLine();
+            Console.Write("your id: ");
+            string id = Console.ReadLine();
+            Student student1 = new Student(name, id);
 
-            Node<int> list = BuildRegularList();
-            OutputList(list);
-            Console.Write("Enter number: ");
-            num = int.Parse(Console.ReadLine());
-            list = DeleteAll(list, num);
-            OutputList(list);
-            Console.Write("Enter number: ");
-            num = int.Parse(Console.ReadLine());
-            list = DeleteNumber(list, num);
-            OutputList(list);
-            Console.Write("Enter number: ");
-            num = int.Parse(Console.ReadLine());
-            list = DeleteNumber(list, num);
-            OutputList(list);
+            Console.Write("your name: ");
+            name = Console.ReadLine();
+            Console.Write("your id: ");
+            id = Console.ReadLine();
+            Student student2 = new Student(name, id);
+
+            Console.WriteLine("Enter list of grades to the first student: ");
+            int grade = int.Parse(Console.ReadLine());
+            while (grade >= 0 && grade <= 100)
+            {
+                student1.AddGrade(grade);
+                grade = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine("Enter list of grades to the second student: ");
+            grade = int.Parse(Console.ReadLine());
+            while (grade >= 0 && grade <= 100)
+            {
+                student2.AddGrade(grade);
+                grade = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine(student1.ToString());
+            Console.WriteLine(student2.ToString());
+
+            double avg1 = student1.CalculateAvg();
+            double avg2 = student2.CalculateAvg();
+            bool biggerAvg = avg1 > avg2;
+            Console.WriteLine($"\n{student1.GetName()}'s avarage is: {avg1}");
+            Console.WriteLine($"{student2.GetName()}'s avarage is: {avg2}");
+            if (biggerAvg)
+                Console.WriteLine($"the avarage of student: {student1.GetName()}, id: {student1.GetId()}, is bigger.");           
+            else
+                Console.WriteLine($"the avarage of student: {student2.GetName()}, id: {student2.GetId()}, is bigger.");
+
+            student1.UpdateGrade(1, 100);
+            student1.UpdateGrade(GetLength(student1.GetGradesList()), 100);
+            Console.WriteLine(student1.ToString());
+
+            student2.DeleteGrade(3);
+            Console.WriteLine(student2.ToString());
             Console.ReadKey();
+
         }
     }
 }
