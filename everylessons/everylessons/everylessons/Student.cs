@@ -7,101 +7,51 @@ namespace everylessons
     class Student
     {
         string name, id;
-        private Node<int> gradesList;
-        public Student(string name, string id)
+        char gender;
+        int age;
+        double[] grades;
+        public Student(string name, string id, char gender, int age, double[] grades)
         {
             this.name = name;
             this.id = id;
-            gradesList = null;
+            this.gender = gender;
+            this.age = age;
+            this.grades = grades;
         }
         public string GetName() => name;
         public string GetId() => id;
-        public Node<int> GetGradesList() => gradesList;
-        public void AddGrade(int grade)
+        public char GetGender() => gender;
+        public int GetAge() => age;
+        public double[] GetGrades() => grades;
+        public void SetName(string name)
         {
-            Node<int> pos = gradesList;
-            if (pos == null)
-            {
-                gradesList = new Node<int>(grade);
-            }
-            else
-            {
-                while (pos.GetNext() != null)
-                {
-                    pos = pos.GetNext();
-                }
-                pos.SetNext(new Node<int>(grade));
-            }
+            this.name = name;
         }
-        public double CalculateAvg()
+        public void SetId(string id)
         {
-            double sum = 0;
-            double counter = 0;
-            Node<int> pos = gradesList;
-            while (pos != null)
-            {
-                sum += pos.GetInfo();
-                counter++;
-                pos = pos.GetNext();
-            }
-            double avg = sum / counter;
-            return avg;
+            this.id = id;
         }
-        public void UpdateGrade(int subject, int newGrade)
+        public void SetGender(char gender)
         {
-            if (GetLength(gradesList) < subject)
-            {
-                Console.WriteLine("subject goes beyond the list");
-            }
-            else
-            {
-                Node<int> pos = gradesList;
-                for (int i = 0; i < subject-1; i++)
-                {
-                    pos = pos.GetNext();
-                }
-                pos.SetInfo(newGrade);
-            }
+            this.gender= gender;
         }
-        public void DeleteGrade(int subject)
+        public void SetAge(int age)
         {
-            if(GetLength(gradesList) < subject)
-            {
-                Console.WriteLine("subject goes beyond the list");
-            }
-            else
-            {
-                Node<int> pos = gradesList;
-                for (int i = 0; i < subject-2; i++)
-                {
-                    pos = pos.GetNext();
-                }
-                pos.SetNext(pos.GetNext().GetNext());
-            }
-            
+            this.age = age;
         }
-        public static int GetLength(Node<int> list)
+        public void SetGrade(double[] grades)
         {
-
-            int counter = 0;
-            Node<int> pos = list;
-            while (pos != null)
-            {
-                counter++;
-                pos = pos.GetNext();
-            }
-            return counter;
+            this.grades = grades;
         }
         public override string ToString()
         {
-            string tostring = $"\nid: {id}\nname: {name}\nthe grades: ";
-            Node<int> pos = gradesList;
-            while (pos != null)
+            string tostring = $"\nid: {id}\nname: {name}\ngender: {gender}\nage: {age}\ngrade: ";
+            for (int i = 0; i < grades.Length; i++)
             {
-                tostring += pos.GetInfo() + ", ";
-                pos = pos.GetNext();
+                tostring += grades[i].ToString() + ", ";
             }
-            return tostring;
+            return tostring += "\n------------------";
         }
+        
     }
 }
