@@ -4,188 +4,268 @@ namespace everylessons
 {
     class Program
     {
-        public static void AvgAge(Company company)
+        // exercise a
+        public static void FillQueue(Queue<int>q)
         {
-            double sum_company = 0;
-            double counter_company = 0;
-            string avg = "";
-            for (int i = 0; i < company.Workers.Length; i++)
+            int number;
+            bool isContinue = true;
+            Console.WriteLine("Enter a list of integer number. To finish press not integer number");
+            while(isContinue)
             {
-                double sum_department = 0;
-                double counter_department = 0;
-                Node<Employee> pos = company.Workers[i];
-                while (pos != null)
+                try
                 {
-                    sum_department += pos.GetInfo().Years_of_work;
-                    counter_department++;
-                    sum_company += pos.GetInfo().Years_of_work; ;
-                    counter_company++;
-                    pos = pos.GetNext();
+                    number = int.Parse(Console.ReadLine());
+                    q.Insert(number);
                 }
-                avg += $"department {i+1} work age avarage: {sum_department / counter_department}\n";
-            }
-            avg += $"company work age avarage: {sum_company / counter_company}";
-            Console.WriteLine(avg);
-        }
-        public static void GirlsAndBoys(Company company)
-        {
-            string avg = "";
-            for (int i = 0; i < company.Workers.Length; i++)
-            {
-                double boys = 0;
-                double girls = 0;
-                Node<Employee> pos = company.Workers[i];
-                while (pos != null)
+                catch
                 {
-                    if (pos.GetInfo().Gender == 'M')
-                        boys++;
-                    else
-                        girls++;
-                    pos = pos.GetNext();
-                }
-                avg += $"department {i+1} girls: {girls} boys: {boys}\n";
-            }
-            Console.Write(avg);
-        }
-        public static Company AddOneYear(Company company)
-        {
-            for (int i = 0; i < company.Workers.Length; i++)
-            {
-                Node<Employee> pos = company.Workers[i];
-                while (pos != null)
-                {
-                    pos.GetInfo().Years_of_work++;
-                    pos = pos.GetNext();
+                    isContinue = false;
                 }
             }
-            return company;
         }
-        public static double[] AvgSalary(Company company)
+        public static Queue<string> XXX(Node<string> clientList, Node<int> priorities)
         {
-            double[] avgSalary = new double[company.NumOfDepartments];
-            for (int i = 0; i < company.NumOfDepartments; i++)
+            Node<string> cl_pos = clientList;
+            Node<int> ps_pos = priorities;
+            Queue<string> q = null;
+            for (int i = 1; i <= 5; i++)
             {
-                double salarySum = 0;
-                double counter = 0;
-                Node<Employee> pos = company.Workers[i];
-                while (pos != null)
+                while (ps_pos != null) 
                 {
-                    salarySum += pos.GetInfo().CalculateSalary();
-                    counter++;
-                    pos = pos.GetNext();
-                }
-                avgSalary[i] = salarySum / counter;
-            }
-            return avgSalary;
-        }
-        public static Node<string> Oldest(Company company)
-        {
-            Node<string> oldest = null;
-            for (int i = 0; i < company.NumOfDepartments; i++)
-            {
-                Node<Employee> pos = company.Workers[i];
-                while (pos != null)
-                {
-                    if (pos.GetInfo().Years_of_work > 15)
+                    if (ps_pos.GetInfo() == i) 
                     {
-                        if (oldest == null)
-                            oldest = new Node<string>(pos.GetInfo().Id);
-                        else
-                        {
-                            Node<string> pos_ = oldest;
-                            while (pos_.GetNext() != null)
-                            {
-                                pos_ = pos_.GetNext(); 
-                            }
-                            pos_.SetNext(new Node<string>(pos.GetInfo().Id));
-                        }
+                        q.Insert(cl_pos.GetInfo());
                     }
-                    pos = pos.GetNext();
+                    ps_pos = ps_pos.GetNext();
+                    cl_pos = cl_pos.GetNext();
                 }
+                ps_pos = priorities;
+                cl_pos = clientList;
             }
-            return oldest;
+            return q;           
         }
-        public static Employee[] Committee(Company company)
+        // exercise b
+        public static Queue<int> Clone(Queue<int> queue)
         {
-            Employee[] committee = new Employee[company.NumOfDepartments];
-            for (int i = 0; i < company.NumOfDepartments; i++)
+            Queue<int> clone = new Queue<int>();
+            Queue<int> pos = queue;
+            while (!pos.IsEmpty())
             {
-                Node<Employee> pos = company.Workers[i];
-                Employee oldest_of_department = null;
-                double max = 0;
-                while (pos != null)
-                {
-                    max = Math.Max(pos.GetInfo().Years_of_work, max);
-                    if (max == pos.GetInfo().Years_of_work)
-                        oldest_of_department = pos.GetInfo();
-                    pos = pos.GetNext();
-                }
-                committee[i] = oldest_of_department;
+                clone.Insert(pos.Remove());
             }
-            return committee;
+            return clone;
         }
 
-        static void Main(string[] args)
+        // exercise c
+        public static void OutputQueue(Queue<int> q)
         {
-            string id;
-            Company company = new Company("Oleg And Sons", 3);
-            for (int i = 1; i <= 9; i++)
+            Queue<int> pos = q;
+            while (!pos.IsEmpty())
             {
-                Console.Write("id: ");
-                id = Console.ReadLine();
-                Console.Write("name: ");
-                string name = Console.ReadLine();
-                Console.Write("gender: ");
-                char gender = char.Parse(Console.ReadLine());
-                Console.Write("years of work: ");
-                double years_of_work = int.Parse(Console.ReadLine());
-                Employee employee = new Employee(id, name, gender, years_of_work);
-                if (i <= 4)
-                    company.AddEmployee(employee, 1);
-                else if (i >= 5 && i <= 7)
-                    company.AddEmployee(employee, 2);
-                else
-                    company.AddEmployee(employee, 3);
+                Console.WriteLine(pos.Remove()+", ");
             }
-            Console.WriteLine(company);
-            Console.Write("enter ID of worker in the third department: ");
-            id = Console.ReadLine();
-            company.DeleteEmployee(id);
-            Console.WriteLine(company);
-            Console.Write("enter ID of worker in the second department who doesn't exist: ");
-            id = Console.ReadLine();
-            company.DeleteEmployee(id);
-            Console.Write("enter ID of worker in the first department: ");
-            id = Console.ReadLine();
-            company.MoveEmployee(id, 1, 2);
-            Console.WriteLine(company);
-            AvgAge(company);
-            GirlsAndBoys(company);
-            company = AddOneYear(company);
-            Console.WriteLine(company);
-            double[] avgSalary = AvgSalary(company);
-            for (int i = 0; i < avgSalary.Length; i++)
-            {
-                Console.WriteLine($"deparment {i+1} avarage salary: {avgSalary[i]}");
-            }
-            Node<string> oldest = Oldest(company);
-            ViewList(oldest);
-            Employee[] committee = Committee(company);
-            for (int i = 0; i < committee.Length; i++)
-            {
-                Console.WriteLine(committee[i]);
-            }
-            Console.ReadKey();
         }
-        public static void ViewList(Node<string> list)
+
+        // exercise d
+        public static bool SearchInQueue(Queue<int> q, int num)
         {
-            Node<string> pos = list;
+            Queue<int> pos = q;
+            bool isExist = false;
+            while (!pos.IsEmpty())
+            {
+                if(pos.Remove() == num)
+                {
+                    isExist = true;
+                }
+            }
+            return isExist;
+        }
+
+        // exercise e
+        public static int SumQueue(Queue<int> q)
+        {
+            int sum = 0;
+            Queue<int> pos = q;
+            while (!pos.IsEmpty())
+            {
+                sum += pos.Remove();
+            }
+            return sum;
+        }
+
+        // exercise f
+        public static void SearchAndDelete(Queue<int> q, int num)
+        {
+            if (!SearchInQueue(q, num))
+            {
+                Console.WriteLine($"there is no {num} in this queue.");
+            }
+            else
+            {
+                Queue<int> pos = q;
+                Queue<int> q1 = new Queue<int>();
+                while (!pos.IsEmpty())
+                {
+                    if (pos.Remove() != num)
+                    {
+                        q1.Insert(num);
+                    }
+                }
+                q = q1;
+            }
+        }
+
+        // exercise g
+        public static int FindMax(Queue<int> q)
+        {
+            Queue<int> pos = q;
+            int max = 0;
+            while (!pos.IsEmpty())
+            {
+                max = Math.Max(max, pos.Remove());
+            }
+            return max;
+        }
+
+        // exercise h
+        public static int CountMax(Queue<int> q)
+        {
+            Queue<int> pos = q;
+            int counter = 0;
+            while (!pos.IsEmpty())
+            {
+                if(pos.Remove() == FindMax(q))
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        //exercise i
+        public static void MultyN(Queue<int> q, int k)
+        {
+            Queue<int> pos = q;
+            Queue<int> q1 = new Queue<int>();
+            while (!pos.IsEmpty())
+            {
+                q1.Insert(pos.Remove() * k);
+            }
+            q = q1;
+        }
+
+        //exercise j
+        public static bool IsSeries(Queue<int> q)
+        {
+            int prev = q.Head();
+            int next;
+            Queue<int> pos = q; 
+            int distance = pos.Remove()- prev;
+            while (!pos.IsEmpty())
+            {
+                next = pos.Remove();
+                if (next - prev != distance)
+                {
+                    return false;
+                }
+                prev = next;
+            }
+            return true;
+        }
+
+        //exercise k
+        public static bool IsSorted(Queue<int> q)
+        {
+            int prev = q.Head();
+            int next;
+            Queue<int> pos = q;
+            while (!pos.IsEmpty())
+            {
+                next = pos.Remove();
+                if (next - prev < 0)
+                {
+                    return false;
+                }
+                prev = next;
+            }
+            return true;
+        }
+
+        //exercise l
+        public static Queue<int> Select(Node<int> list, int limit)
+        {
+            Node<int> pos = list;
+            Queue<int> queue = new Queue<int>();
             while (pos != null)
             {
-                Console.Write($"{pos.GetInfo()}, ");
+                if(pos.GetInfo() < limit)
+                {
+                    queue.Insert(pos.GetInfo());
+                }
                 pos = pos.GetNext();
             }
-            Console.WriteLine();
+            return queue;
+        }
+
+        //exercise m
+        public static Queue<int> FromArrayToQueue(int[] arr)
+        {
+            Queue<int> queue = new Queue<int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                queue.Insert(arr[i]);
+            }
+            return queue;
+        }
+
+        //exercise n
+        public static bool EqualsQueues(Queue<int> q1, Queue<int> q2)
+        {
+            Queue<int> pos1 = q1;
+            Queue<int> pos2 = q2;
+            while (!pos1.IsEmpty() && !pos2.IsEmpty())
+            {
+                if (pos1.Remove() != pos2.Remove())
+                {
+                    return false;
+                }
+            }
+            if (pos1.IsEmpty() && pos2.IsEmpty())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //exercise o
+        public static Queue<int> CutQueues(Queue<int> q1, Queue<int> q2)
+        {
+            Queue<int> pos1 = q1;
+            Queue<int> pos2 = q2;
+            Queue<int> queue = new Queue<int>();
+            while (!pos1.IsEmpty())
+            {
+                int num1 = pos1.Remove();
+                while (!pos2.IsEmpty())
+                {
+                    int num2 = pos2.Remove();
+                    if(num1 == num2)
+                    {
+                        if (!SearchInQueue(queue, num2))
+                        {
+                            queue.Insert(num2);
+                        }
+                    }
+                }
+                pos2 = q2;
+            }
+            return queue;
+        }
+
+        //f**k main!!
+        static void Main(string[] args)
+        {
+            Console.ReadKey();
         }
     }
 }
